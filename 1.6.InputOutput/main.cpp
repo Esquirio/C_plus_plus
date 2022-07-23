@@ -1,22 +1,48 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-int addNumbers(int first_num, int second_num){
-    int res = first_num + second_num;
-    return res;
-}
-
 int main (){
-    int firstNumber {3}; // Statement
-    int secondNumber {7}; // Statement
+    int age {21};
+    string name;
 
-    int sum = addNumbers(firstNumber, secondNumber);
+    /* // Print data
+    cout << "Hello C++20"  << endl;
+    cout << "Age: " << age << endl;
 
-    cout << "First number: "  << firstNumber << endl;
-    cout << "Second number: "  << secondNumber << endl;
-    cout << "The sum of the two numbers is: "  << sum << endl;
-    cout << "The sum of the two numbers is: "  << addNumbers(23,8) << endl;
+    cerr << "Error message: Something is wrong" << endl;
+    clog << "Log message: Something happened" << endl; */
+
+
+    /* // Get input
+    cout << "Please type in your name: " << endl;
+    cin >> name;
+
+    cout << "Please type in your age: " << endl;
+    cin >> age;
+
+    cout << "Hello " << name << endl;
+    cout << "You are " << age << " years old!" << endl;
+
+    cout << "Please type in your name and age: " << endl;
+    cin >> name >> age;
+
+    cout << "Hello " << name << endl;
+    cout << "You are " << age << " years old!" << endl; */
+
+
+    // Data with spaces
+    string fullName;
+
+    cout << "Please type in your full name and age" << endl;
+    
+    getline(cin, fullName);
+
+    cin >> age;
+
+    cout << "Hello " << fullName << " you are " 
+        << age << " years old!" << endl;
 
     return 0;
 }
