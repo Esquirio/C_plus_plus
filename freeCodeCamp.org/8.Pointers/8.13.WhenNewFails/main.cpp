@@ -10,21 +10,21 @@ int main()
     } */
 
     //exception
-    /* for(size_t i{0} ; i < 100 ; ++i){
+    for(size_t i{0} ; i < 10 ; ++i){
         try{
             int * data = new int[1000000000];
         }catch(std::exception& ex){
             cout << "  Something went wrong : " << ex.what() << endl;
         }
     }
-    */
+   
 
    //std::nothrow
-    for(size_t i{0} ; i < 100 ; ++i){
+    for(size_t i{0} ; i < 10 ; ++i){
    
-        int * data = new(nothrow) int[1000000000];
+        int * data1 = new(nothrow) int[1000000000];
 
-        if(data!=nullptr){
+        if(data1!=nullptr){
             cout << "Data allocated" << endl;
         }else{
             cout << "Data allocation failed" << endl;
