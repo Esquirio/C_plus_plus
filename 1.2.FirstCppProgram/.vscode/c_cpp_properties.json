@@ -1,26 +1,21 @@
 {
-    "env": {
-      "myDefaultIncludePath": ["${workspaceFolder}", "${workspaceFolder}/include"],
-      "myCompilerPath": "/usr/local/bin/gcc-7"
-    },
-    "configurations": [
+  "configurations": [
       {
-        "name": "Mac",
-        "intelliSenseMode": "clang-x64",
-        "includePath": ["${myDefaultIncludePath}", "/another/path"],
-        "macFrameworkPath": ["/System/Library/Frameworks"],
-        "defines": ["FOO", "BAR=100"],
-        "forcedInclude": ["${workspaceFolder}/include/config.h"],
-        "compilerPath": "/usr/bin/clang",
-        "cStandard": "c11",
-        "cppStandard": "c++17",
-        "compileCommands": "/path/to/compile_commands.json",
-        "browse": {
-          "path": ["${workspaceFolder}"],
-          "limitSymbolsToIncludedHeaders": true,
-          "databaseFilename": ""
-        }
+          "name": "Win32",
+          "includePath": [
+              "${workspaceFolder}/**"
+          ],
+          "defines": [
+              "_DEBUG",
+              "UNICODE",
+              "_UNICODE"
+          ],
+          "windowsSdkVersion": "10.0.19041.0",
+          "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30133/bin/Hostx64/x64/cl.exe",
+          "cStandard": "c17",
+          "cppStandard": "c++20",
+          "intelliSenseMode": "windows-msvc-x64"
       }
-    ],
-    "version": 4
-  }
+  ],
+  "version": 4
+}
