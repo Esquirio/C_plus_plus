@@ -1,1 +1,5 @@
-# C_plus_plus
+# C++ stydy
+
+This examples are based in this YouTube video: https://www.youtube.com/watch?v=8jLOx1hD3_o
+
+The original directory is available in https://github.com/rutura/The-C-20-Masterclass-Source-Code
