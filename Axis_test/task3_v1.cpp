@@ -38,12 +38,12 @@ int solution(vector<string> &E) {
         if(size <= day.size()){
             dayOne = day;
             size = day.size();
-            cout << i << endl;
+            // cout << i << endl;
         }
         i++;
     }
 
-    cout << "---------" << endl;
+    // cout << "---------" << endl;
     // Remove all the people that are already in DayOne
     for(vector<string>::iterator it = E.begin(); it != E.end(); it++){
         for( int employee : dayOne ){
@@ -90,8 +90,8 @@ int solution(vector<string> &E) {
 int main()
 {
     vector<string> E = {"039", "4", "14", "32", "", "34", "7"};
-    int result = 0; //solution(E);
-    // cout << result << endl << endl;
+    int result = solution(E);
+    cout << result << endl << endl;
 
     E.clear();
     E = {"801234567", "180234567", "0", "189234567", "891234567", "98", "9"};
@@ -101,9 +101,9 @@ int main()
 
     E.clear();
     E = {"5421", "245", "1452", "0345", "53", "354"};
-    // result = solution(E);
+    result = solution(E);
 
-    // cout << result << endl << endl;
+    cout << result << endl << endl;
 
     return 0;
 }
