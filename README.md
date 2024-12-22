@@ -1,2 +1,2 @@
-# C++ stydy
+# C and C++ stydy
 
