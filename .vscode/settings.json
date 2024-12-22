@@ -53,6 +53,9 @@
         "vector": "cpp",
         "string_view": "cpp",
         "bitset": "cpp",
-        "optional": "cpp"
-    }
+        "optional": "cpp",
+        "functional": "cpp",
+        "array": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
