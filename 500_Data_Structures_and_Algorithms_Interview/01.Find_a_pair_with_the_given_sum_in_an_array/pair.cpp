@@ -45,10 +45,10 @@ void printResult(vector<vector<int>> result) {
   }
 }
 
-int main() {
-  vector<int> nums = {8, 7, 2, 5, 3, 1};
+int main(int argc, char *argv[]) {
+  vector<int> nums; // = {8, 7, 2, 5, 3, 1};
   vector<vector<int>> result;
-  int target = 10;
+  int target; // = 10;
 
   result = findPair(nums, target);
 
