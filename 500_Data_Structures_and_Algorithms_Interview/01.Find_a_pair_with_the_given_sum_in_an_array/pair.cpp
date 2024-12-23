@@ -20,43 +20,50 @@ Solution in C++
 ******************************************************************************/
 
 #include <iostream>
+#include <cstdlib>
 #include <vector>
 
 using namespace std;
 
-vector<vector<int>> findPair(vector<int> nums, int target) {
-  vector<vector<int>> result;
+void findPair(vector<vector<int>>* result, vector<int> nums, int target) {
   int n = nums.size();
   for (int i = 0; i < n - 1; i++) {
     for (int j = n - 1; j > i; j--) {
       if (nums[i] + nums[j] == target) {
-        result.push_back({nums[i], nums[j]});
+        result->push_back({nums[i], nums[j]});
       }
     }
   }
-
-  return result;
 }
 
 void printResult(vector<vector<int>> result) {
-  for (int i = 0; i < result.size(); i++) {
-    cout << "Pair found (" << result[i][0] << "," << result[i][1] << ")"
-         << endl;
-  }
-}
-
-int main() {
-  vector<int> nums = {8, 7, 2, 5, 3, 1};
-  vector<vector<int>> result;
-  int target = 10;
-
-  result = findPair(nums, target);
-
   if (result.size() == 0) {
     cout << "Pair not found" << endl;
   } else {
-    printResult(result);
+    for (int i = 0; i < result.size(); i++) {
+      cout << "(" << result[i][0] << ", " << result[i][1] << ")"
+          << endl;
+    }
   }
+}
+
+int main(int argc, char *argv[]) {
+  if (argc < 3) {
+    cout << "Mandatory parameters: " << argv[0] << " <target> <num1> <num2> ... <numN>" << endl;
+    return 1;
+  }
+  int n = argc - 2;
+  int target = atoi(argv[1]);
+  vector<int> nums;
+  vector<vector<int>> result;
+
+  for(int i =0; i < n; i++){
+    nums.push_back(atoi(argv[i+2]));
+  }
+
+  findPair(&result, nums, target);
+
+  printResult(result);
 
   return 0;
 }

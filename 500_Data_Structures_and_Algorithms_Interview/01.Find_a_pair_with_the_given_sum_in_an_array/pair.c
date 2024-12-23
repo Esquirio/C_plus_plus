@@ -21,41 +21,63 @@ Solution in C
 #include <stdio.h>
 #include <stdlib.h>
 
-int** findPair(int nums[], int n, int target) {
-  int** result = (int**)malloc(sizeof(int*) *
-                               n);  // Allocate memory for the array of pointers
-  int k = 0;
+#define MAX 100
+
+void findPair(int** result, int nums[], int n, int target, int* count) {
   for (int i = 0; i < n - 1; i++) {
     for (int j = n - 1; j > i; j--) {
       if (nums[i] + nums[j] == target) {
-        result[k] =
-            (int*)malloc(sizeof(int) * 2);  // Allocate memory for each row
-        result[k][0] = nums[i];
-        result[k][1] = nums[j];
-        k++;
+        result[*count] = (int*)malloc(sizeof(int) * 2);  // Allocate memory for each row
+        result[*count][0] = nums[i];
+        result[*count][1] = nums[j];
+        *count = *count + 1;
       }
     }
   }
-  return result;
 }
 
-void printResult(int** result, int n) {
-  for (int i = 0; i < n; i++) {
-    if (result[i] != NULL) {
-      printf("Pair found (%d, %d)\n", result[i][0], result[i][1]);
+void printResult(int** result, int* count) {
+  if(*count != 0) {
+    for (int i = 0; i < *count; i++) {
+      if (result[i] != NULL) {
+        printf("(%d, %d)\n", result[i][0], result[i][1]);
+      }
     }
+  }
+  else {
+    printf("Pair not found\n");
   }
 }
 
-int main() {
-  int** result;
-  int nums[] = {8, 7, 2, 5, 3, 1};
-  int target = 10;
-  int n = sizeof(nums) / sizeof(nums[0]);
+int main(int argc, char *argv[]) {
+  if (argc < 3) {
+    printf("Mandatory parameters: %s <target> <num1> <num2> ... <numN>\n", argv[0]);
+    return 1;
+  }
 
-  result = findPair(nums, n, target);
+  int n = argc - 2;
+  // Allocate memory for the array of pointers
+  int** result = (int**)malloc(sizeof(int*) * n);
+  int target = atoi(argv[1]), count = 0;
+  int* nums;
+  nums = (int*)malloc(sizeof(int) * n);
 
-  printResult(result, n);
+  for (int i = 0; i < n; i++) {
+    nums[i] = atoi(argv[i + 2]);
+  }
+
+  findPair(result, nums, n, target, &count);
+  
+  printResult(result, &count);
+
+  // Free allocated memory
+  for (int i = 0; i < n; i++) {
+    if (result[i] != NULL) {
+      free(result[i]);
+    }
+  }
+  free(result);
+  free(nums);
 
   return 0;
 }
