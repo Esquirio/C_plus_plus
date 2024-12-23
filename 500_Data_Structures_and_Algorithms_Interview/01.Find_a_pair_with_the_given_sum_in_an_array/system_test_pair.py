@@ -1,11 +1,12 @@
 import subprocess
 from colorama import Fore, Style, init
+import sys
 
 # Initialize colorama
 init(autoreset=True)
 
-def compile_c_program():
-    compile_command = ["g++", "pair.c"]
+def compile_c_program(file_name):
+    compile_command = ["g++", file_name]
     result = subprocess.run(compile_command, capture_output=True, text=True)
     if result.returncode != 0:
         print(f"{Fore.RED}Compilation failed:{Style.RESET_ALL}{Fore.RESET}")
@@ -47,8 +48,8 @@ def compare_output(output, expected):
             else:
                 print(f"{Fore.CYAN}{exp}\t\t{out}{Style.RESET_ALL}{Fore.RESET}")
     else:
-        print(f"{Fore.RED}Test failed{Style.RESET_ALL}")
-        print(f"{Fore.CYAN}Expected:\tGot:")
+        print(f"{Fore.RED}Test failed{Style.RESET_ALL}{Fore.RESET}")
+        print(f"{Fore.CYAN}Expected:\t{Fore.RED}Got:{Style.RESET_ALL}{Fore.RESET}")
         print(f"{Fore.CYAN}--------\t--------")
         expected_lines = expected.split('\n')
         output_lines = output.split('\n')
@@ -59,13 +60,20 @@ def compare_output(output, expected):
                 print(f"{Fore.CYAN}{exp}\t\t{Fore.RED}{out}{Style.RESET_ALL}{Fore.RESET}")
 
 if __name__ == "__main__":
-    if compile_c_program():
+    if len(sys.argv) <= 1: 
+        print(f"{Fore.RED}File name should be passed as argument{Style.RESET_ALL}{Fore.RESET}")
+        sys.exit(1)
+    
+    file_name = sys.argv[1]
+
+    if compile_c_program(file_name):
         test_cases = [
             ["10", "8", "7", "2", "5", "3", "1"],
             ["12", "5", "2", "6", "8", "1", "9"],
             ["10", "8", "7", "2", "6", "3", "4"],
             ["10", "8", "2"],
-            ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"]
+            ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"],
+            ["20", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"]
         ]
         for args in test_cases:
             target = int(args[0])
