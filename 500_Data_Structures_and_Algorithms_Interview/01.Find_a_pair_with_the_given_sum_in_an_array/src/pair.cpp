@@ -19,13 +19,18 @@ Output: Pair not found
 Solution in C++
 ******************************************************************************/
 
-#include <iostream>
-#include <cstdlib>
-#include <vector>
+#include "../include/pair_cpp.h"
 
-using namespace std;
+/* Function Definitions */
 
-void findPair(vector<vector<int>>* result, vector<int> nums, int target) {
+/**
+ * @brief Finds all pairs in the array that sum up to the target value.
+ * 
+ * @param result Pointer to store the result pairs.
+ * @param nums Array of integers.
+ * @param target Target sum value.
+ */
+void findPair(std::vector<std::vector<int>>* result, std::vector<int> nums, int target) {
   int n = nums.size();
   for (int i = 0; i < n - 1; i++) {
     for (int j = n - 1; j > i; j--) {
@@ -36,34 +41,18 @@ void findPair(vector<vector<int>>* result, vector<int> nums, int target) {
   }
 }
 
-void printResult(vector<vector<int>> result) {
+/**
+ * @brief Prints the result pairs.
+ * 
+ * @param result Array of result pairs.
+ */
+void printResult(std::vector<std::vector<int>> result) {
   if (result.size() == 0) {
-    cout << "Pair not found" << endl;
+    std::cout << "Pair not found" << std::endl;
   } else {
     for (int i = 0; i < result.size(); i++) {
-      cout << "(" << result[i][0] << ", " << result[i][1] << ")"
-          << endl;
+      std::cout << "(" << result[i][0] << ", " << result[i][1] << ")"
+          << std::endl;
     }
   }
-}
-
-int main(int argc, char *argv[]) {
-  if (argc < 3) {
-    cout << "Mandatory parameters: " << argv[0] << " <target> <num1> <num2> ... <numN>" << endl;
-    return 1;
-  }
-  int n = argc - 2;
-  int target = atoi(argv[1]);
-  vector<int> nums;
-  vector<vector<int>> result;
-
-  for(int i =0; i < n; i++){
-    nums.push_back(atoi(argv[i+2]));
-  }
-
-  findPair(&result, nums, target);
-
-  printResult(result);
-
-  return 0;
 }

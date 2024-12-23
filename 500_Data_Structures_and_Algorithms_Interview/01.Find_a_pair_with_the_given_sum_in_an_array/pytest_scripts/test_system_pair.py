@@ -6,7 +6,9 @@ from colorama import Fore, Style, init
 init(autoreset=True)
 
 def compile_c_program(file_name):
-    compile_command = ["g++", file_name]
+    file_name_lib = file_name.replace("_main", "")
+    compile_command = ["g++", file_name, file_name_lib]
+    print(f"Compile command: {' '.join(compile_command)}")
     result = subprocess.run(compile_command, capture_output=True, text=True)
     if result.returncode != 0:
         print(f"{Fore.RED}Compilation failed:{Style.RESET_ALL}{Fore.RESET}")
@@ -29,6 +31,9 @@ def parse_output(output):
     pairs = output.split("\n")
     return [tuple(map(int, pair.strip("()").split(", "))) for pair in pairs]
 
+def test_compile(file_name):
+    assert compile_c_program(file_name), "Compilation failed"
+
 @pytest.mark.parametrize("args, expected", [
     (["10", "8", "7", "2", "5", "3", "1"], [(8, 2), (7, 3)]),
     (["12", "5", "2", "6", "8", "1", "9"], []),
@@ -39,10 +44,6 @@ def parse_output(output):
     (["10", "9", "0", "8", "1", "7", "2", "6", "3", "5", "4"], [(9, 1), (8, 2), (7, 3), (6, 4)])
 ])
 def test_system_pair(file_name, args, expected):
-    assert compile_c_program(file_name), "Compilation failed"
     output = run_c_program(args)
     parsed_output = parse_output(output)
     assert sorted(parsed_output) == sorted(expected)
-
-def test_compile(file_name):
-    assert compile_c_program(file_name), "Compilation failed"

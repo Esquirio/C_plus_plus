@@ -19,39 +19,7 @@ Output: Pair not found
 Solution in C using hash table
 ******************************************************************************/
 
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct {
-  int key;
-  int value;
-} HashItem;
-
-void findPair(HashItem* hash_table, int nums[], int n, int target, int* found) {
-  HashItem* map = (HashItem*)calloc(n, sizeof(HashItem) * n);
-  for (int i = 0; i < n; i++) {
-    int complement = target - nums[i];
-    if (map[complement].key != 0) {
-      hash_table[*found].key = map[complement].key;
-      hash_table[*found].value = nums[i];
-      *found = *found + 1;
-    }
-    map[nums[i]].key = nums[i];
-  }
-}
-
-void printResult(HashItem* hash_table, int* found) {
-  if(*found != 0) {
-    for (int i = 0; i < *found; i++) {
-      if (hash_table[i].key != 0) {
-        printf("(%d, %d)\n", hash_table[i].key, hash_table[i].value);
-      }
-    }
-  }
-  else {
-    printf("Pair not found\n");
-  }
-}
+#include "../include/pair_hash_table.h"
 
 int main(int argc, char *argv[]) {
   if (argc < 3) {
@@ -59,11 +27,10 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-
   int n = argc - 2;
   // Allocate memory for the array of pointers
   HashItem* hash_table = (HashItem*)calloc(n, sizeof(HashItem) * n);
-  int target = atoi(argv[1]), found = 0;
+  int target = atoi(argv[1]), count = 0;
   int* nums;
   nums = (int*)malloc(sizeof(int) * n);
 
@@ -71,9 +38,9 @@ int main(int argc, char *argv[]) {
     nums[i] = atoi(argv[i + 2]);
   }
 
-  findPair(hash_table, nums, n, target, &found);
+  findPair(hash_table, nums, n, target, &count);
   
-  printResult(hash_table, &found);
+  printResult(hash_table, &count);
 
   // Free allocated memory
   free(hash_table);

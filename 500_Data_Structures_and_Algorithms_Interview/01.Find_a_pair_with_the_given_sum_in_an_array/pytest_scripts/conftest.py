@@ -1,5 +1,5 @@
 def pytest_addoption(parser):
-    parser.addoption("--file_name", action="store", default="default name")
+    parser.addoption("--file_name", action="store", default="none")
 
 
 def pytest_generate_tests(metafunc):

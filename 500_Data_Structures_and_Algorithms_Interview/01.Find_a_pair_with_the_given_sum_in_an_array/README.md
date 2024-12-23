@@ -22,21 +22,23 @@ ___
 
 ### On linux
 
+Open the directory 01.Find_a_pair_with_the_given_sum_in_an_array in the terminal:
+
 To build the source code
 ```
-g++ pair.c
+g++ src/pair_main.c src/pair.c
 ```
 or
 ```
-g++ pair.cpp
+g++ src/pair_main.cpp src/pair.cpp
 ```
 or
 ```
-g++ pair_hash_table.c
+g++ src/pair_hash_table.c src/pair_hash_table.c
 ```
 or
 ```
-g++ pair_hash_table.cpp
+g++ src/pair_hash_table.cpp src/pair_hash_table.cpp
 ```
 
 To run the solution
@@ -49,36 +51,74 @@ or
 ```
 etc.
 ___
-## How to run the pytest
+## How to run system tests using pytest
 
 Type the following command in the console:
 ```
-pytest test_system_pair.py --file_name <file_name> -v
+pytest <path_test_system_pair.py> --file_name <path_file_name> -v
 ```
 Where: file_name could be pair.c, pair.cpp, pair_hash_table.c or pair_hash_table.cpp
 
 For example:
 ```
-pytest test_system_pair.py --file_name pair_hash_table.cpp -v
+pytest pytest_scripts/test_system_pair.py --file_name src/pair_main.c -v
 ```
 
 Expected output:
 ```
-=============================================================== test session starts ===============================================================
+============================================================= test session starts =============================================================
 platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0 -- /usr/bin/python3
 cachedir: .pytest_cache
 rootdir: /home/ftor/repos/C_plus_plus/500_Data_Structures_and_Algorithms_Interview/01.Find_a_pair_with_the_given_sum_in_an_array
 collected 8 items
 
-test_system_pair.py::test_system_pair[pair_hash_table.cpp-args0-expected0] PASSED                   [ 12%]
-test_system_pair.py::test_system_pair[pair_hash_table.cpp-args1-expected1] PASSED                   [ 25%]
-test_system_pair.py::test_system_pair[pair_hash_table.cpp-args2-expected2] PASSED                   [ 37%]
-test_system_pair.py::test_system_pair[pair_hash_table.cpp-args3-expected3] PASSED                   [ 50%]
-test_system_pair.py::test_system_pair[pair_hash_table.cpp-args4-expected4] PASSED                   [ 62%]
-test_system_pair.py::test_system_pair[pair_hash_table.cpp-args5-expected5] PASSED                   [ 75%]
-test_system_pair.py::test_system_pair[pair_hash_table.cpp-args6-expected6] PASSED                   [ 87%]
-test_system_pair.py::test_compile[pair_hash_table.cpp] PASSED                                       [100%]
+pytest_scripts/test_system_pair.py::test_compile[src/pair_main.c] PASSED                            [ 12%]
+pytest_scripts/test_system_pair.py::test_system_pair[src/pair_main.c-args0-expected0] PASSED        [ 25%]
+pytest_scripts/test_system_pair.py::test_system_pair[src/pair_main.c-args1-expected1] PASSED        [ 37%]
+pytest_scripts/test_system_pair.py::test_system_pair[src/pair_main.c-args2-expected2] PASSED        [ 50%]
+pytest_scripts/test_system_pair.py::test_system_pair[src/pair_main.c-args3-expected3] PASSED        [ 62%]
+pytest_scripts/test_system_pair.py::test_system_pair[src/pair_main.c-args4-expected4] PASSED        [ 75%]
+pytest_scripts/test_system_pair.py::test_system_pair[src/pair_main.c-args5-expected5] PASSED        [ 87%]
+pytest_scripts/test_system_pair.py::test_system_pair[src/pair_main.c-args6-expected6] PASSED        [100%]
 
-=============================================================== 8 passed in 3.60s ===============================================================
+============================================================= 8 passed in 0.10s =============================================================
+
+```
+
+## How to run the unit tests
+
+### C unit tests
+
+Open the directory 01.Find_a_pair_with_the_given_sum_in_an_array in the terminal:
+
+Type the following command in the console:
+```
+g++ <path_test.c file> <path_other.c file> -lcunit
+```
+For example:
+```
+g++ cunit_tests/test_pair.c src/pair.c -lcunit
+```
+
+Expected output:
+```
+
+
+     CUnit - A unit testing framework for C - Version 2.1-3
+     http://cunit.sourceforge.net/
+
+
+Suite: findPair
+  Test: test_findPair ...passed
+Suite: findPair2
+  Test: test_findPair2 ...passed
+  Test: test_findPair3 ...passed
+
+Run Summary:    Type  Total    Ran Passed Failed Inactive
+              suites      2      2    n/a      0        0
+               tests      3      3      3      0        0
+             asserts     35     35     35      0      n/a
+
+Elapsed time =    0.000 seconds
 ```
 

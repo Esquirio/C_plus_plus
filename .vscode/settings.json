@@ -57,7 +57,17 @@
         "functional": "cpp",
         "array": "c",
         "*.tcc": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "stdlib.h": "c",
+        "algorithm": "cpp",
+        "cstdarg": "cpp",
+        "cwctype": "cpp",
+        "map": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "numbers": "cpp",
+        "sstream": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

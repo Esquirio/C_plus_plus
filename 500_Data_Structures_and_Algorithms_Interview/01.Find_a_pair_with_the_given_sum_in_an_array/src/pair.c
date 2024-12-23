@@ -18,11 +18,19 @@ Output: Pair not found
 
 Solution in C
 ******************************************************************************/
-#include <stdio.h>
-#include <stdlib.h>
+#include "../include/pair.h"
 
-#define MAX 100
+/* Function Definitions */
 
+/**
+ * @brief Finds all pairs in the array that sum up to the target value.
+ * 
+ * @param result Pointer to store the result pairs.
+ * @param nums Array of integers.
+ * @param n Size of the array.
+ * @param target Target sum value.
+ * @param count Pointer to store the count of pairs found.
+ */
 void findPair(int** result, int nums[], int n, int target, int* count) {
   for (int i = 0; i < n - 1; i++) {
     for (int j = n - 1; j > i; j--) {
@@ -36,6 +44,12 @@ void findPair(int** result, int nums[], int n, int target, int* count) {
   }
 }
 
+/**
+ * @brief Prints the result pairs.
+ * 
+ * @param result Array of result pairs.
+ * @param count Number of pairs.
+ */
 void printResult(int** result, int* count) {
   if(*count != 0) {
     for (int i = 0; i < *count; i++) {
@@ -47,37 +61,4 @@ void printResult(int** result, int* count) {
   else {
     printf("Pair not found\n");
   }
-}
-
-int main(int argc, char *argv[]) {
-  if (argc < 3) {
-    printf("Mandatory parameters: %s <target> <num1> <num2> ... <numN>\n", argv[0]);
-    return 1;
-  }
-
-  int n = argc - 2;
-  // Allocate memory for the array of pointers
-  int** result = (int**)malloc(sizeof(int*) * n);
-  int target = atoi(argv[1]), count = 0;
-  int* nums;
-  nums = (int*)malloc(sizeof(int) * n);
-
-  for (int i = 0; i < n; i++) {
-    nums[i] = atoi(argv[i + 2]);
-  }
-
-  findPair(result, nums, n, target, &count);
-  
-  printResult(result, &count);
-
-  // Free allocated memory
-  for (int i = 0; i < n; i++) {
-    if (result[i] != NULL) {
-      free(result[i]);
-    }
-  }
-  free(result);
-  free(nums);
-
-  return 0;
 }
