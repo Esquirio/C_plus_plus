@@ -23,31 +23,34 @@ Solution in C
 
 #define MAX 100
 
-void findPair(int** result, int nums[], int n, int target, int* found) {
-  *found = 0;
+void findPair(int** result, int nums[], int n, int target, int* count) {
   for (int i = 0; i < n - 1; i++) {
     for (int j = n - 1; j > i; j--) {
       if (nums[i] + nums[j] == target) {
-        result[*found] = (int*)malloc(sizeof(int) * 2);  // Allocate memory for each row
-        result[*found][0] = nums[i];
-        result[*found][1] = nums[j];
-        *found = *found + 1;
+        result[*count] = (int*)malloc(sizeof(int) * 2);  // Allocate memory for each row
+        result[*count][0] = nums[i];
+        result[*count][1] = nums[j];
+        *count = *count + 1;
       }
     }
   }
 }
 
-void printResult(int** result, int* found) {
-  int n = *found;
-  for (int i = 0; i < n; i++) {
-    if (result[i] != NULL) {
-      printf("(%d, %d)\n", result[i][0], result[i][1]);
+void printResult(int** result, int* count) {
+  if(*count != 0) {
+    for (int i = 0; i < *count; i++) {
+      if (result[i] != NULL) {
+        printf("(%d, %d)\n", result[i][0], result[i][1]);
+      }
     }
+  }
+  else {
+    printf("Pair not found\n");
   }
 }
 
 int main(int argc, char *argv[]) {
-  if (argc < 4) {
+  if (argc < 3) {
     printf("Mandatory parameters: %s <target> <num1> <num2> ... <numN>\n", argv[0]);
     return 1;
   }
@@ -55,7 +58,7 @@ int main(int argc, char *argv[]) {
   int n = argc - 2;
   // Allocate memory for the array of pointers
   int** result = (int**)malloc(sizeof(int*) * n);
-  int target = atoi(argv[1]);
+  int target = atoi(argv[1]), count = 0;
   int* nums;
   nums = (int*)malloc(sizeof(int) * n);
 
@@ -63,14 +66,9 @@ int main(int argc, char *argv[]) {
     nums[i] = atoi(argv[i + 2]);
   }
 
-  int found;
-  findPair(result, nums, n, target, &found);
+  findPair(result, nums, n, target, &count);
   
-  if (found) {
-    printResult(result, &found);
-  } else {
-    printf("Pair not found\n");
-  }
+  printResult(result, &count);
 
   // Free allocated memory
   for (int i = 0; i < n; i++) {
