@@ -1,3 +1,3 @@
 # C and C++ stydy
 
-C and C++ software exemples.
+C and C++ software examples.
