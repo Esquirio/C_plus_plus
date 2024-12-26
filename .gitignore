@@ -34,3 +34,6 @@
 # Cache files
 __pycache__/
 .pytest_cache/
+
+# Build files
+build/
