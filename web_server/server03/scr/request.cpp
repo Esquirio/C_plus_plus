@@ -45,7 +45,7 @@ std::string HttpRequest::readHtmlFile(const std::string &path) {
 
   if (flag == 0) {
     std::stringstream buffer;
-    buffer << file.rdbur();
+    buffer << file.rdbuf();
     return buffer.str();
   }
 

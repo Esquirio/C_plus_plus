@@ -13,9 +13,9 @@ class Server {
     struct sockaddr_in server_addr;  // structure for server address
 
     // Create server socket
-    server_socket_fd - socket(AF_INET, SOCK_STREAM, 0);
+    server_socket_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (server_socket_fd < 0) {
-      std::cerr << ¨Failed to create server socket.¨ << std::endl;
+      std::cerr << "Failed to create server socket." << std::endl;
       exit(1);
     }
 
@@ -29,7 +29,7 @@ class Server {
              sizeof(server_addr)) < 0) {
       std::cerr << "Failed to bind server socket." << std::endl;
       exit(1);
-    })
+    }
 
     // Make the server socket a listening socket
     if (listen(server_socket_fd, 10) < 0) {
@@ -42,7 +42,7 @@ class Server {
     return server_socket_fd;
   };
 
-  void stop() {
+  void stop(int server_socket_fd) {
     // Close the server socket
     close(server_socket_fd);
     std::cout << "Server stopped." << std::endl;
@@ -50,7 +50,3 @@ class Server {
 
   ~Server(){};
 };
-
-server::server(/* args */) {}
-
-server::~server() {}
